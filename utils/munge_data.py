@@ -14,17 +14,21 @@ OUTPUT_PATH = './data/object_data'
 SEG_PATH_FULL = './data/segmentation_full'
 SEG_PATH_SUB = './data/segmentation_sub'
 
-os.makedirs(SEG_PATH, exist_ok=True)
 os.makedirs(SEG_PATH_FULL, exist_ok=True)
+os.makedirs(SEG_PATH_SUB, exist_ok=True)
 os.makedirs(OUTPUT_PATH, exist_ok=True)
 os.makedirs(os.path.join(SEG_PATH_FULL, 'images'), exist_ok=True)
 os.makedirs(os.path.join(SEG_PATH_FULL, 'masks'), exist_ok=True)
+# os.makedirs(os.path.join(SEG_PATH_SUB, 'images'), exist_ok=True)
+# os.makedirs(os.path.join(SEG_PATH_SUB, 'masks'), exist_ok=True)
 os.makedirs(os.path.join(OUTPUT_PATH, 'images'), exist_ok=True)
 os.makedirs(os.path.join(OUTPUT_PATH, 'labels'), exist_ok=True)
 
 def process_data(images, data_type="train"):
     os.makedirs(os.path.join(SEG_PATH_FULL, f'images/{data_type}/'), exist_ok=True)
     os.makedirs(os.path.join(SEG_PATH_FULL, f'masks/{data_type}/'), exist_ok=True)
+    # os.makedirs(os.path.join(SEG_PATH_SUB, f'images/{data_type}/'), exist_ok=True)
+    # os.makedirs(os.path.join(SEG_PATH_SUB, f'masks/{data_type}/'), exist_ok=True)
     os.makedirs(os.path.join(OUTPUT_PATH, f'images/{data_type}/'), exist_ok=True)
     os.makedirs(os.path.join(OUTPUT_PATH, f'labels/{data_type}/'), exist_ok=True)
     for im in tqdm(images, total=len(images)):
@@ -77,7 +81,7 @@ def process_data(images, data_type="train"):
         imageio.imwrite(os.path.join(OUTPUT_PATH, f'images/{data_type}/{image_name}'), img)
         
         
-        # deeplab bbox version
+        # deeplab per bbox version
         # for i in range(len(anns)):
         #     xmin = anns[i]["bbox"][0]
         #     ymin = anns[i]["bbox"][1]
@@ -94,9 +98,10 @@ def process_data(images, data_type="train"):
         #     mask = coco.annToMask(anns[i]) * 255.
         #     mask = mask[int(ymin):int(ymax), int(xmin):int(xmax)]
         #     #save images
-        #     imageio.imwrite(os.path.join(SEG_PATH, f'images/{data_type}/{image_name[:-4]}_{i}.jpg'), sub_image.astype(np.uint8))
+        #     imageio.imwrite(os.path.join(SEG_PATH_SUB, f'images/{data_type}/{image_name[:-4]}_{i}.jpg'), sub_image.astype(np.uint8))
         #     #save masks
-        #     imageio.imwrite(os.path.join(SEG_PATH, f'masks/{data_type}/{image_name[:-4]}_{i}.jpg'), mask.astype(np.uint8))
+        #     imageio.imwrite(os.path.join(SEG_PATH_SUB, f'masks/{data_type}/{image_name[:-4]}_{i}.jpg'), mask.astype(np.uint8))
+
 
         # deeplab full img version
         # mask_all = np.zeros((height, width))
