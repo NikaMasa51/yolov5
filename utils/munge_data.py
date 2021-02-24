@@ -137,11 +137,16 @@ if __name__ == "__main__":
     # get all ImgIds and images
     imgIds = coco.getImgIds()
     images = coco.loadImgs(imgIds)
-    
+
+    # batch size
+    batch_size = 8
+        
     # train, validation split
+    # train and validation can be divided by batch size (train:validation=8:2)
     train, valid = model_selection.train_test_split(
         images,
-        test_size=0.1,
+        train_size=len(images)//(5*batch_size)*(4*batch_size),
+        test_size=len(images)//(5*batch_size)*(1*batch_size),
         random_state=42,
         shuffle=True        
     )
