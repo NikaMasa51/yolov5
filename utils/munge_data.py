@@ -88,11 +88,11 @@ def process_data(images, data_type="train"):
         #     xmax = anns[i]["bbox"][2] + anns[i]["bbox"][0]
         #     ymax = anns[i]["bbox"][3] + anns[i]["bbox"][1]
 
-        #     base = 50
+        #     base = 10
         #     xmin = xmin - base if (xmin - base) >= 0 else 0
         #     ymin = ymin - base if (ymin - base) >= 0 else 0
-        #     xmax = xmax + base if (xmax + base) <= 1500 else 1500
-        #     ymax = ymax + base if (ymax + base) <= 1500 else 1500
+        #     xmax = xmax + base if (xmax + base) <= width else width
+        #     ymax = ymax + base if (ymax + base) <= height else height
             
         #     sub_image = img[int(ymin):int(ymax), int(xmin):int(xmax), :]
         #     mask = coco.annToMask(anns[i]) * 255.
