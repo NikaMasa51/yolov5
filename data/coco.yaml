@@ -15,6 +15,7 @@ train: ./data/object_data/images/train  # images
 # val: ../coco/images/val2017  # images
 val: ./data/object_data/images/validation  # images
 # test: ../coco/test-dev2017  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+test: ./data/inference  # images
 
 # number of classes
 # nc: 4
